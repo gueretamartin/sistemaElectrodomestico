@@ -13,7 +13,7 @@ public class Television extends Electrodomesticos {
 	public void setResolucion(float resolucion) {
 		this.resolucion = resolucion;
 	}
-	public boolean isSintonizadorTdt() {
+	public boolean getSintonizadorTdt() {
 		return sintonizadorTdt;
 	}
 	public void setSintonizadorTdt(boolean sintonizadorTdt) {

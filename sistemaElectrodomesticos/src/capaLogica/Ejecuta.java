@@ -1,5 +1,7 @@
 package capaLogica;
 
+import java.util.ArrayList;
+
 import capaEntidades.*;
 import capaDatos.*;
 public class Ejecuta {
@@ -14,4 +16,11 @@ public class Ejecuta {
 	public static void agregaTelevisor(float prec,float peso,char cons, float res,String col,boolean sinto){;
 		Television electro = new Television(prec,peso,cons, res,col,sinto);
 	Datos.guardaElectrodomestico(electro);
+}
+
+
+public static ArrayList<Electrodomesticos> getElectrodomesticos() {
+	ArrayList<Electrodomesticos> elecs;
+	elecs = Datos.getElectrodomesticos();
+	return elecs;
 }}
