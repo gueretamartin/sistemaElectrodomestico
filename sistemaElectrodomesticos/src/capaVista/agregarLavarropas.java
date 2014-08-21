@@ -29,6 +29,8 @@ import javax.swing.JComboBox;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JButton;
 
+import sun.tools.jar.Main;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -44,7 +46,7 @@ public class agregarLavarropas extends JDialog {
 	private JTextField t2;
 	private JTextField t3;
 	private JTextField t4;
-
+	private static agregarLavarropas frame;
 	/**
 	 * Launch the application.
 	 */
@@ -92,13 +94,12 @@ public class agregarLavarropas extends JDialog {
 				float prec = Float.parseFloat(t1.getText());
 				float peso =  Float.parseFloat( t2.getText());
 				float car =  Float.parseFloat(t3.getText()); ;
-				String var = t4.getText(); 
-				char cons; 
-				cons = var.charAt(0); 
+				char cons  = t4.getText().charAt(0); 
 				
 				String col = (String)con.getSelectedItem(); 
 				
 				Ejecuta.agregaLavarropas(prec, peso, car, cons, col);
+				/* agregarLavarropas.frame.setVisible(false);  */ 
 				
 			}
 		});
@@ -223,7 +224,7 @@ public class agregarLavarropas extends JDialog {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				agregarLavarropas frame = new agregarLavarropas(new JFrame(), true);
+				frame = new agregarLavarropas(new JFrame(), true);
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					public void windowClosing(java.awt.event.WindowEvent e) {

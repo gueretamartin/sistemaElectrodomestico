@@ -31,6 +31,24 @@ public class Lavarropas extends Electrodomesticos {
 		carga=car;
 	}
 	
+	public String getTipo()
+	{
+		String tipo = "Lavarropas";
+				return tipo;
+	}
+	
+	
+	public double precioFinal()
+	{
+		double precio_final = super.precioFinal();
+		
+		if (this.carga > 30)
+		{
+			precio_final += 50;
+		}
+		
+		return precio_final;
+	}
 	
 
 }

@@ -12,15 +12,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 
-import capaDatos.Datos;
-import capaEntidades.Electrodomesticos;
-
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Ejecutable extends JFrame {
 
@@ -28,14 +24,18 @@ public class Ejecutable extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-public Ejecutable() {
-   
+		
+	
+	public Ejecutable() {
+		
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setTitle("ELECTROSYSTEM");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 466, 229);
 		contentPane = new JPanel();
+		setBounds(100, 100, 524, 232);
+
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -53,6 +53,8 @@ public Ejecutable() {
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(new ActionListener() {
+		
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				System.exit(1);
@@ -108,8 +110,12 @@ public Ejecutable() {
 		mnOpciones.add(mnListarPor);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("  Rango de importes");
-	
-		ArrayList<Electrodomesticos> elec = Datos.getElectrodomesticos();
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new ListaR(Ejecutable.this,true).setVisible(true);
+			
+			}});
 		 
 		 
 		mntmNewMenuItem_1.setFont(new Font("Verdana", Font.PLAIN, 18));

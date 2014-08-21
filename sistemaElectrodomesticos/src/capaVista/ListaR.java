@@ -1,14 +1,12 @@
 package capaVista;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.ScrollPane;
+import javax.swing.JOptionPane;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,6 +18,7 @@ import javax.swing.JComboBox;
 
 import capaEntidades.*;
 import capaLogica.*;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,20 +35,28 @@ public class ListaR extends JDialog {
 	private JTextField ranMax;
 	private Character[] letras = {' ','A','B','C','D','E','F'};
 	private ArrayList<Electrodomesticos> elecs;
-	private JComboBox cmbConsumo;
+	private JComboBox<?> cmbConsumo;
+	private JButton btnListar;
 
 	
-	
-	public ListaR() {
-		setBounds(100, 100, 571, 393);
+		
+	public ListaR(JFrame hola, boolean modal) {
+		
+		super(hola,modal);
+		setBounds(100, 100, 754, 479);
 		getContentPane().setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 119, 675, 487);
+		getContentPane().add(scrollPane);
 		
-
 		table = new JTable(miModelo);
-		table.setBackground(Color.LIGHT_GRAY);
-		table.setBounds(10, 119, 535, 225);
-		getContentPane().add(table);
+		scrollPane.setViewportView(table);
+		
+		JPanel panel = new JPanel();
+		panel.setForeground(Color.BLACK);
+		panel.setBounds(10, 604, 675, 38);
+		getContentPane().add(panel);
 		
 		ranMin = new JTextField();
 		ranMin.setFont(new Font("Verdana", Font.PLAIN, 22));
@@ -88,16 +95,15 @@ public class ListaR extends JDialog {
 		lblNewLabel_4.setBounds(216, 23, 101, 26);
 		getContentPane().add(lblNewLabel_4);
 		
-		JComboBox cmbConsumo = new JComboBox(letras);
+		cmbConsumo = new JComboBox<Object>(letras);
 		cmbConsumo.setBounds(326, 29, 54, 20);
 		getContentPane().add(cmbConsumo);
 		
 		final JButton btnNewButton = new JButton("Limpiar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Listar();
-					
-					btnNewButton.setEnabled(false);
+				LimpiarTabla();		
+				btnNewButton.setEnabled(false);
 			}	
 	});
 		
@@ -112,24 +118,20 @@ public class ListaR extends JDialog {
 		btnNewButton_1.setBounds(303, 85, 101, 23);
 		getContentPane().add(btnNewButton_1);
 		
-		final JButton btnNewButton_2 = new JButton("Listar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btnListar = new JButton("Listar");
+		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Listar();
-				btnNewButton_1.setEnabled(true);
-				btnNewButton.setEnabled(true);
+				
 			}
-
-		
 		});
-		btnNewButton_2.setFont(new Font("Verdana", Font.PLAIN, 9));
-		btnNewButton_2.setBounds(204, 85, 89, 23);
-		getContentPane().add(btnNewButton_2);
+		btnListar.setBounds(193, 85, 89, 23);
+		getContentPane().add(btnListar);
 		
 	
 	}
 
-	private void Listar() {
+	public void Listar() {
 		
 		LimpiarTabla();
 		elecs = Ejecuta.getElectrodomesticos();
@@ -140,21 +142,38 @@ public class ListaR extends JDialog {
 			
 			for(int i = 0; i < elecs.size(); i++)
 			{				
-					/*  VALIDA QUE SELECCIONE EL CONSUMO Y NO SELECCIONE RANGOS DE IMPORTE	 */
-				
 				if (!((Character)cmbConsumo.getSelectedItem() == ' '))
 				{
 					if((ranMin.getText().isEmpty()) && (ranMax.getText().isEmpty()))
 					{	
-						/* VALIDA QUE EL CARACTER QUE INGRESO SEA EL CORRECTO */
 						
 						if(elecs.get(i).getConsu().getConsumo() == (Character)cmbConsumo.getSelectedItem())
 						{					
-									/* PREGUNTA SI ES LAVARROPAS O TV */
 							
 							if (elecs.get(i) instanceof capaEntidades.Television)
 							{
-								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getNombre(),
+								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
+										String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo())," ",
+										String.valueOf(((capaEntidades.Television)elecs.get(i)).getResolucion()), ((capaEntidades.Television)elecs.get(i)).getTDT()};
+								miModelo.addRow(electroActual);
+							}
+							
+							else if (elecs.get(i) instanceof capaEntidades.Lavarropas)
+							{
+								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
+										String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo()), String.valueOf(((capaEntidades.Lavarropas)elecs.get(i)).getCarga()),
+										" "," "};
+								miModelo.addRow(electroActual);
+							}
+						}
+					}
+					else if (!(ranMin.getText().isEmpty()) && !(ranMax.getText().isEmpty()))
+					{
+						if(elecs.get(i).getConsu().getConsumo() == (Character)cmbConsumo.getSelectedItem() && (elecs.get(i).precioFinal() > Float.parseFloat(ranMin.getText())) && (elecs.get(i).precioFinal() < Float.parseFloat(ranMax.getText())))
+						{
+							if (elecs.get(i) instanceof capaEntidades.Television)
+							{
+								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
 										String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo())," ",
 										String.valueOf(((capaEntidades.Television)elecs.get(i)).getResolucion()), ((capaEntidades.Television)elecs.get(i)).getTDT()};
 								miModelo.addRow(electroActual);
@@ -168,43 +187,23 @@ public class ListaR extends JDialog {
 							}
 						}
 					}
-					else if (!(ranMin.getText().isEmpty()) && !(ranMax.getText().isEmpty()))
-					{
-						if(elecs.get(i).getConsu().getConsumo() == (Character)cmbConsumo.getSelectedItem() && (elecs.get(i).precioFinal() > Float.parseFloat(txtMin.getText())) && (elecs.get(i).precioFinal() < Float.parseFloat(txtMax.getText())))
-						{
-							if (elecs.get(i) instanceof capaEntidades.Television)
-							{
-								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
-										String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo())," ",
-										String.valueOf(((capaEntidades.Television)elecs.get(i)).getResolucion()), ((capaEntidades.Television)elecs.get(i)).getTDT()};
-								miModelo.addRow(electroActual);
-							}
-							else if (elecs.get(i) instanceof capaEntidades.Lavarropas)
-							{
-								String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getNombre(),
-										String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsumo().getLetra()), String.valueOf(((Entidades.Lavarropas)elecs.get(i)).getCarga()),
-										" "," "};
-								miModelo.addRow(electroActual);
-							}
-						}
-					}
 				}
-				else if(!(txtMin.getText().isEmpty()) && !(txtMax.getText().isEmpty()))
+				else if(!(ranMin.getText().isEmpty()) && !(ranMax.getText().isEmpty()))
 				{
-					if((elecs.get(i).precioFinal() > Float.parseFloat(txtMin.getText())) && (elecs.get(i).precioFinal() < Float.parseFloat(txtMax.getText())))
+					if((elecs.get(i).precioFinal() > Float.parseFloat(ranMin.getText())) && (elecs.get(i).precioFinal() < Float.parseFloat(ranMax.getText())))
 					{
-						if (elecs.get(i) instanceof Entidades.Television)
+						if (elecs.get(i) instanceof capaEntidades.Television)
 						{
-							String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getNombre(),
-									String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsumo().getLetra())," ",
-									String.valueOf(((Entidades.Television)elecs.get(i)).getResolucion()), ((Entidades.Television)elecs.get(i)).getTDT()};
+							String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
+									String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo())," ",
+									String.valueOf(((capaEntidades.Television)elecs.get(i)).getResolucion()), ((capaEntidades.Television)elecs.get(i)).getTDT()};
 							miModelo.addRow(electroActual);
 						}
-						else if (elecs.get(i) instanceof Entidades.Lavarropas)
+						else if (elecs.get(i) instanceof capaEntidades.Lavarropas)
 						{
-							String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getNombre(),
-									String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsumo().getLetra()), String.valueOf(((Entidades.Lavarropas)elecs.get(i)).getCarga()),
-									" "," "};
+							String[] electroActual = {elecs.get(i).getTipo(),String.valueOf(elecs.get(i).precioFinal()),elecs.get(i).getCol().getColor(),
+									String.valueOf(elecs.get(i).getPeso()),String.valueOf(elecs.get(i).getConsu().getConsumo()), String.valueOf(((capaEntidades.Lavarropas)elecs.get(i)).getCarga()),
+									" "," "};  /*VER GET CARGA*/
 							miModelo.addRow(electroActual);
 						}
 					}
@@ -238,12 +237,14 @@ public class ListaR extends JDialog {
 	
 	
 public static void main(String[] args) {
-	try {
-		ListaR dialog = new ListaR();
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.setVisible(true);
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-}	
+	ListaR frame = new ListaR(new JFrame(), true);
+	frame.addWindowListener(new java.awt.event.WindowAdapter() {
+
+		public void windowClosing(java.awt.event.WindowEvent e) {
+		System.exit(0);
+		}
+		});
+		frame.setVisible(true);
+}
+
 }

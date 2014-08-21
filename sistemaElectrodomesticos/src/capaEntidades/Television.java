@@ -13,7 +13,7 @@ public class Television extends Electrodomesticos {
 	public void setResolucion(float resolucion) {
 		this.resolucion = resolucion;
 	}
-	public boolean getSintonizadorTdt() {
+	public boolean isSintonizadorTdt() {
 		return sintonizadorTdt;
 	}
 	public void setSintonizadorTdt(boolean sintonizadorTdt) {
@@ -41,4 +41,37 @@ public class Television extends Electrodomesticos {
 		sintonizadorTdt = sinto;
 	}
 	
+	public String getTipo()
+	{
+		String tipo = "Television";
+				return tipo;
+	}
+	
+	public String getTDT()
+	{
+		if (this.isSintonizadorTdt())
+		{
+			return "Si";
+		}
+		else
+		{
+			return "No";
+		}
+	}
+	
+	public double precioFinal()
+	{
+		double precio_final = super.precioFinal();
+		
+		if (this.resolucion > 40)
+		{
+			precio_final += precio_final * 0.3;
+		}
+		if (this.sintonizadorTdt)
+		{
+			precio_final += 50;
+		}
+		
+		return precio_final;
+	}
 }

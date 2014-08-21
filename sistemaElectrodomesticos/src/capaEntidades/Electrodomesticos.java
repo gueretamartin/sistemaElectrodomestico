@@ -8,6 +8,7 @@ public class Electrodomesticos {
 	private Consumo consu;
 	
 	
+	
 	public double getPrecioBase() {
 		return precioBase;
 	}
@@ -64,15 +65,15 @@ public class Electrodomesticos {
 		precioBase = p ;
 		peso = pe;
 		this.col = new Color(comprobarColor(colo));
-		this.consu = new Consumo(this.comprobarConsumoEnergetico(consu));
+		this.consu = new Consumo(consu/*this.comprobarConsumoEnergetico(consu)*/);
 		
 	}
 	
-	public char  comprobarConsumoEnergetico(char letra){
+	 /*public char  comprobarConsumoEnergetico(char letra){
 		if (letra!='A' || letra!='B' || letra!='C' || letra!='D' || letra!='E')	
 		{	letra = 'F'; } 			
 		return letra;
-	}
+	}**/
 	
 	private String comprobarColor(String colo){
 		
@@ -81,5 +82,72 @@ public class Electrodomesticos {
 		}
 		
 		return colo;
-		}}
+	}
+	
+	public String getTipo()
+	{
+		String tipo = "Electrodomesticos";
+				return tipo;
+	}
+	
+	public double precioFinal()
+	{
+		double precio_final = 0;
+		
+		precio_final += this.getPrecioBase();
+		
+		if((this.peso > 0) && (this.peso <= 19)) 
+		{
+			precio_final += 10;
+		}
+		else if ((this.peso > 19) && (this.peso <= 49))
+		{
+			precio_final += 50;
+		}
+		else if ((this.peso > 49) && (this.peso <= 79))
+		{
+			precio_final += 80;
+		}
+		else if (this.peso > 79)
+		{
+			precio_final += 100;
+		}
+		
+		switch((this.consu).getConsumo())
+		{
+			case('A'): 
+			{
+				precio_final += 100;
+				break;
+			}
+			case('B'): 
+			{
+				precio_final += 80;
+				break;
+			}
+			case('C'): 
+			{
+				precio_final += 60;
+				break;
+			}
+			case('D'): 
+			{
+				precio_final += 50;
+				break;
+			}
+			case('E'): 
+			{
+				precio_final += 30;
+				break;
+			}
+			case('F'): 
+			{
+				precio_final += 10;
+				break;
+			}
+		}
+		
+		return precio_final; 
+	}
+	}
 
