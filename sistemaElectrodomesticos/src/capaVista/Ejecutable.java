@@ -25,7 +25,7 @@ public class Ejecutable extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 		
-	
+		
 	public Ejecutable() {
 		
 		setResizable(false);
@@ -60,7 +60,7 @@ public class Ejecutable extends JFrame {
 				System.exit(1);
 			
 			}}
-				);
+				);		
 			
 		
 		mntmSalir.setFont(new Font("Verdana", Font.PLAIN, 18));

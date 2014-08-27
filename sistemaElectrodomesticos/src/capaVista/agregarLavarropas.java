@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Toolkit;
@@ -29,17 +30,13 @@ import javax.swing.JComboBox;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JButton;
 
-import sun.tools.jar.Main;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 public class agregarLavarropas extends JDialog {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField t1;
@@ -47,15 +44,13 @@ public class agregarLavarropas extends JDialog {
 	private JTextField t3;
 	private JTextField t4;
 	private static agregarLavarropas frame;
-	/**
-	 * Launch the application.
-	 */
+	private JComboBox con;
+	float prec ;
+	float peso;
+	float car ;
+	char cons ; 
+	String col ;
 	
-
-	/**
-	 * Create the frame.
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public agregarLavarropas(JFrame hola, boolean modal) {
 		
 		super(hola,modal);
@@ -79,7 +74,7 @@ public class agregarLavarropas extends JDialog {
 		layeredPane_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		
 		String[] valores= new String[]{"NEGRO","BLANCO","AZUL","ROJO","GRIS" } ;
-		final JComboBox con = new JComboBox(valores);
+		 con = new JComboBox(valores);
 		con.setFont(new Font("Verdana", Font.PLAIN, 22));
 		con.setBounds(140, 191, 105, 25);
 		layeredPane.add(con);
@@ -88,19 +83,8 @@ public class agregarLavarropas extends JDialog {
 		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-					
-				float prec = Float.parseFloat(t1.getText());
-				float peso =  Float.parseFloat( t2.getText());
-				float car =  Float.parseFloat(t3.getText()); ;
-				char cons  = t4.getText().charAt(0); 
-				
-				String col = (String)con.getSelectedItem(); 
-				
-				Ejecuta.agregaLavarropas(prec, peso, car, cons, col);
-				/* agregarLavarropas.frame.setVisible(false);  */ 
-				
+				recibedatos();	
+				cerrar();
 			}
 		});
 		btnNewButton.setBackground(new Color(230, 230, 250));
@@ -211,16 +195,50 @@ public class agregarLavarropas extends JDialog {
 		lblNewLabel_7.setBounds(237, 66, 46, 29);
 		layeredPane.add(lblNewLabel_7);
 		
-	
-		
-	
-		
 		JLabel lblAgregarNuevoLavarropas = new JLabel("Agregar nuevo Lavarropas");
 		lblAgregarNuevoLavarropas.setFont(new Font("Verdana", Font.PLAIN, 24));
 		lblAgregarNuevoLavarropas.setBounds(109, 11, 395, 31);
 		layeredPane_1.add(lblAgregarNuevoLavarropas);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	public void cerrar(){
+		this.setVisible(false);
+		int num = JOptionPane.showConfirmDialog(null, "¿Desea agregar un nuevo Lavarropas?", null, JOptionPane.YES_NO_OPTION);
+		if(num==JOptionPane.YES_OPTION){limpiar(); this.setVisible(true);}
+		else {this.setVisible(false);}
+	}
+	
+	private void recibedatos() {
+		int num = 1;
+
+		try{	
+		 prec = Float.parseFloat(t1.getText());
+		 peso =  Float.parseFloat( t2.getText());
+		 car =  Float.parseFloat(t3.getText()); ;
+		 cons  = t4.getText().charAt(0); 
+		 col = (String)con.getSelectedItem(); 
+	} catch (NullPointerException e) {
+		JOptionPane.showMessageDialog(null, "¡Ingresa todos los valores!");
+		 num = 0;
+		e.printStackTrace();
+	} catch (NumberFormatException e){
+		JOptionPane.showMessageDialog(null, "¡Ingresa todos los valores y de la forma correcta!");
+		num =0;
+	}
+		if (num !=0) Ejecuta.agregaLavarropas(prec, peso, car, cons, col);
+		
+	}
+	
+	private void limpiar(){
+		this.t1.setText(null);
+		this.t2.setText(null);
+		this.t3.setText(null);
+		this.t4.setText(null);
+
+		
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

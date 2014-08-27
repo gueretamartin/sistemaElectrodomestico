@@ -70,6 +70,7 @@ public class Electrodomesticos {
 	}
 	
 	 /*public char  comprobarConsumoEnergetico(char letra){
+		letra=Character.toUpperCase(letra); (qe me la convierta a mayuscula)
 		if (letra!='A' || letra!='B' || letra!='C' || letra!='D' || letra!='E')	
 		{	letra = 'F'; } 			
 		return letra;

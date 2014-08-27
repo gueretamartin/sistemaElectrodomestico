@@ -35,7 +35,7 @@ public class ListaR extends JDialog {
 	private JTextField ranMax;
 	private Character[] letras = {' ','A','B','C','D','E','F'};
 	private ArrayList<Electrodomesticos> elecs;
-	private JComboBox<?> cmbConsumo;
+	private JComboBox cmbConsumo;
 	private JButton btnListar;
 
 	
@@ -47,7 +47,7 @@ public class ListaR extends JDialog {
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 119, 675, 487);
+		scrollPane.setBounds(0, 119, 738, 324);
 		getContentPane().add(scrollPane);
 		
 		table = new JTable(miModelo);
@@ -95,7 +95,7 @@ public class ListaR extends JDialog {
 		lblNewLabel_4.setBounds(216, 23, 101, 26);
 		getContentPane().add(lblNewLabel_4);
 		
-		cmbConsumo = new JComboBox<Object>(letras);
+		cmbConsumo = new JComboBox(letras);
 		cmbConsumo.setBounds(326, 29, 54, 20);
 		getContentPane().add(cmbConsumo);
 		

@@ -2,6 +2,10 @@ package capaVista;
 
 import java.awt.EventQueue;
 
+
+
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +29,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
@@ -33,7 +38,28 @@ import capaLogica.Ejecuta;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
 public class agregarTelevisor extends JDialog {
+	
+	
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField t1;
+	private JTextField t2;
+	private JTextField t4;
+	private JTextField t6;
+	private JRadioButton rdbtnNewRadioButton;
+	private JComboBox con;
+
+	float prec;
+	float peso;
+	char cons;
+	float res;
+	String col;
+	boolean sinto;
+	
+	
 	public agregarTelevisor(JFrame hola, boolean modal) {
 		
 		super(hola,modal);
@@ -119,7 +145,7 @@ public class agregarTelevisor extends JDialog {
 		
 		
 		String[] valores= new String[]{"NEGRO","BLANCO","AZUL","ROJO","GRIS" } ;
-		final JComboBox<?> con = new JComboBox<Object>(valores);
+		 con = new JComboBox(valores);
 		con.setFont(new Font("Verdana", Font.PLAIN, 22));
 		con.setBounds(140, 231, 144, 41);
 		layeredPane_1.add(con);
@@ -130,7 +156,7 @@ public class agregarTelevisor extends JDialog {
 	    layeredPane_2.setBounds(207, 295, 142, 40);
 	    layeredPane_1.add(layeredPane_2);
 	    
-	    final JRadioButton rdbtnNewRadioButton = new JRadioButton("SI");
+	    rdbtnNewRadioButton = new JRadioButton("SI");
 	    rdbtnNewRadioButton.setBounds(7, 10, 54, 23);
 	    layeredPane_2.add(rdbtnNewRadioButton);
 	    rdbtnNewRadioButton.setFont(new Font("Verdana", Font.PLAIN, 22));
@@ -157,22 +183,8 @@ public class agregarTelevisor extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				float prec = Float.parseFloat(t1.getText());
-				float peso =  Float.parseFloat( t2.getText());
-				String var = t4.getText(); 
-
-				char cons; 
-				cons = var.charAt(0); 
-				
-				
-				float res = Float.parseFloat(t6.getText());
-				String col = (String)con.getSelectedItem(); 
-				boolean sinto;
-				if(rdbtnNewRadioButton.isSelected()) 
-				 sinto = true;
-				else  sinto= false;
-				
-				Ejecuta.agregaTelevisor(prec, peso, cons, res, col,sinto);
+				carga();
+				cerrar();
 			}
 				
 				
@@ -202,13 +214,51 @@ public class agregarTelevisor extends JDialog {
 		btnNewButton_2.setBounds(369, 466, 150, 34);
 		contentPane.add(btnNewButton_2);
 	}
+	
+	
+	public void cerrar(){
+		this.setVisible(false);
+		int num = JOptionPane.showConfirmDialog(null, "¿Desea agregar un nuevo Televisor?", null, JOptionPane.YES_NO_OPTION);
+		if(num==JOptionPane.YES_OPTION){limpiar(); this.setVisible(true);}
+		else {this.setVisible(false);}
+	}
+	
+	public void limpiar(){
+	t1.setText(null);;
+	t2.setText(null);;
+	t4.setText(null);;
+	t6.setText(null);;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField t1;
-	private JTextField t2;
-	private JTextField t4;
-	private JTextField t6;
+	}
+	
+	
+	public void carga(){
+		
+		
+		int num =1;
+		try {
+			prec = Float.parseFloat(t1.getText());
+			peso = Float.parseFloat( t2.getText());
+			String var = t4.getText(); 
+			cons = var.charAt(0); 
+			res = Float.parseFloat(t6.getText());
+			col = (String)con.getSelectedItem(); 
+			if(rdbtnNewRadioButton.isSelected()) 
+			sinto = true;
+			else  sinto= false;
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, "¡Ingresa todos los valores!");
+			num = 0;
+			e.printStackTrace();
+		} catch (NumberFormatException e){
+			num=0;
+			JOptionPane.showMessageDialog(null, "¡Ingresa todos los valores y de la forma correcta!");
+		}
+	
+		if (num!=0) Ejecuta.agregaTelevisor(prec, peso, cons, res, col,sinto);} 
+
+	
+
 
 public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
