@@ -12,9 +12,7 @@ public class Consumo {
 		this.consumo = consumo;
 	}
 	
-	public Consumo(){
-		consumo = 'F';
-	}
+	public Consumo(){}
 	
 	public Consumo(char con){
 		consumo = con;

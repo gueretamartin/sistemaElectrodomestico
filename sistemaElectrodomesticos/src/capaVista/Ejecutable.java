@@ -24,17 +24,18 @@ public class Ejecutable extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-		
+	private JPanel contentPane;
+	
 		
 	public Ejecutable() {
 		
-		setResizable(false);
-		setLocationRelativeTo(null);
+		
+		
 		setTitle("ELECTROSYSTEM");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
-		setBounds(100, 100, 524, 232);
+		setBounds(100, 100, 533, 239);
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -132,9 +133,10 @@ public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				 new Ejecutable().setVisible(true);
-
-				
+				 Ejecutable frame = new Ejecutable();
+				 frame.setVisible(true);
+				 frame.setSize(533,239);
+			      frame.setLocationRelativeTo(null);
 			} catch (Exception e) {
 				e.printStackTrace();
 				
@@ -142,6 +144,5 @@ public static void main(String[] args) {
 		}
 	});
 }
-private JPanel contentPane;
 
 }

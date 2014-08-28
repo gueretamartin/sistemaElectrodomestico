@@ -52,15 +52,12 @@ public class agregarLavarropas extends JDialog {
 	String col ;
 	
 	public agregarLavarropas(JFrame hola, boolean modal) {
-		
 		super(hola,modal);
-		setLocationRelativeTo(null);
-
-		setResizable(false);
+		setBounds(100, 100, 595, 457);
+		this.setLocationRelativeTo(hola);
 		setTitle("Agregar Lavarropas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
 
-		setBounds(100, 100, 588, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -243,6 +240,8 @@ public class agregarLavarropas extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				frame = new agregarLavarropas(new JFrame(), true);
+				frame.setSize(594, 457);
+			      frame.setLocationRelativeTo(null);
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					public void windowClosing(java.awt.event.WindowEvent e) {

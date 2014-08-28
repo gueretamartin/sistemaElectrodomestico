@@ -65,16 +65,17 @@ public class Electrodomesticos {
 		precioBase = p ;
 		peso = pe;
 		this.col = new Color(comprobarColor(colo));
-		this.consu = new Consumo(consu/*this.comprobarConsumoEnergetico(consu)*/);
+		/*char letra = this.comprobarConsumoEnergetico(consu);*/
+		this.consu = new Consumo(consu);
 		
 	}
 	
-	 /*public char  comprobarConsumoEnergetico(char letra){
-		letra=Character.toUpperCase(letra); (qe me la convierta a mayuscula)
+	/* public char  comprobarConsumoEnergetico(char letra){
+		letra=Character.toUpperCase(letra); 
 		if (letra!='A' || letra!='B' || letra!='C' || letra!='D' || letra!='E')	
-		{	letra = 'F'; } 			
+			letra = 'F';  			
 		return letra;
-	}**/
+	}*/
 	
 	private String comprobarColor(String colo){
 		

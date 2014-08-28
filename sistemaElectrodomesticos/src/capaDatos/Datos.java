@@ -51,6 +51,12 @@ public class Datos {
 	public void modificarElectrodomestico(Electrodomesticos electro)
 	{}
 
+	
+	
+	 public ArrayList<Electrodomesticos> GetAll()
+	    {
+	        return electrodomesticos;
+	    }
 
 
 	

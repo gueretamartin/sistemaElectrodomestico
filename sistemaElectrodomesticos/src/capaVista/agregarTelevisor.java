@@ -63,11 +63,12 @@ public class agregarTelevisor extends JDialog {
 	public agregarTelevisor(JFrame hola, boolean modal) {
 		
 		super(hola,modal);
-		
+		setBounds(100, 100, 585, 556);
+		this.setLocationRelativeTo(hola);
 		setTitle("Agregar nuevo Televisor");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
+				this.setLocationRelativeTo(hola);
 
-		setBounds(100, 100, 588, 565);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -264,6 +265,7 @@ public static void main(String[] args) {
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 				agregarTelevisor frame = new agregarTelevisor(new JFrame(), true);
+			
 				frame.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					public void windowClosing(java.awt.event.WindowEvent e) {
