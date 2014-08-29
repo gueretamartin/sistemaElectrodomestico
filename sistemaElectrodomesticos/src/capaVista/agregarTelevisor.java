@@ -66,7 +66,7 @@ public class agregarTelevisor extends JDialog {
 		setBounds(100, 100, 585, 556);
 		this.setLocationRelativeTo(hola);
 		setTitle("Agregar nuevo Televisor");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(agregarTelevisor.class.getResource("/imagenes/mini005.png")));
 				this.setLocationRelativeTo(hola);
 
 		contentPane = new JPanel();

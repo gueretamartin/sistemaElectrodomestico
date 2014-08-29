@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.Toolkit;
 
 public class ListaR extends JDialog {
 
@@ -43,6 +44,8 @@ public class ListaR extends JDialog {
 	public ListaR(JFrame hola, boolean modal) {
 		
 		super(hola,modal);
+		setTitle("Listar Productos");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaR.class.getResource("/imagenes/mini005.png")));
 		setBounds(100, 100, 754, 479);
 		this.setLocationRelativeTo(hola);
 		getContentPane().setLayout(null);
@@ -74,12 +77,12 @@ public class ListaR extends JDialog {
 		ranMax.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Ran Min");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 21));
+		lblNewLabel.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 21));
 		lblNewLabel.setBounds(6, 13, 86, 23);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ran Max");
-		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 21));
+		lblNewLabel_1.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 21));
 		lblNewLabel_1.setBounds(7, 40, 92, 20);
 		getContentPane().add(lblNewLabel_1);
 		
@@ -94,12 +97,12 @@ public class ListaR extends JDialog {
 		getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Consumo");
-		lblNewLabel_4.setFont(new Font("Verdana", Font.PLAIN, 22));
-		lblNewLabel_4.setBounds(264, 32, 101, 26);
+		lblNewLabel_4.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 22));
+		lblNewLabel_4.setBounds(8, 70, 101, 26);
 		getContentPane().add(lblNewLabel_4);
 		
 		cmbConsumo = new JComboBox(letras);
-		cmbConsumo.setBounds(390, 40, 54, 20);
+		cmbConsumo.setBounds(103, 75, 92, 20);
 		getContentPane().add(cmbConsumo);
 		
 		btnNewButton = new JButton("Limpiar");
@@ -111,13 +114,13 @@ public class ListaR extends JDialog {
 		
 		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 9));
-		btnNewButton.setBounds(414, 85, 89, 23);
+		btnNewButton.setBounds(487, 85, 89, 23);
 		getContentPane().add(btnNewButton);
 		
 	    btnNewButton_1 = new JButton("Actualizar");
 		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 9));
-		btnNewButton_1.setBounds(303, 85, 101, 23);
+		btnNewButton_1.setBounds(376, 85, 101, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		btnListar = new JButton("Listar");
@@ -135,7 +138,7 @@ public class ListaR extends JDialog {
 				}	
 			}
 		});
-		btnListar.setBounds(193, 85, 89, 23);
+		btnListar.setBounds(277, 86, 89, 23);
 		getContentPane().add(btnListar);
 		
 	

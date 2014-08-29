@@ -56,7 +56,7 @@ public class agregarLavarropas extends JDialog {
 		setBounds(100, 100, 595, 457);
 		this.setLocationRelativeTo(hola);
 		setTitle("Agregar Lavarropas");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(agregarLavarropas.class.getResource("/imagenes/mini005.png")));
 
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
@@ -208,6 +208,8 @@ public class agregarLavarropas extends JDialog {
 	
 	private void recibedatos() {
 		int num = 1;
+		
+		
 
 		try{	
 		 prec = Float.parseFloat(t1.getText());

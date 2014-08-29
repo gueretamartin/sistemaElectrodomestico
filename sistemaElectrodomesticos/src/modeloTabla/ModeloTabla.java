@@ -35,7 +35,7 @@ public class ModeloTabla extends AbstractTableModel {
 	public  ModeloTabla(String min,String max,char letra){
 		
 	
-	ArrayList<Electrodomesticos> electros = new capaDatos.Datos().GetAll();
+	ArrayList<Electrodomesticos> electros = new capaLogica.Ejecuta().getOrden();
 	ArrayList<Electrodomesticos> elecSeleccionados = new ArrayList<Electrodomesticos>();
 	
 		for(int i = 0; i < electros.size(); i++)

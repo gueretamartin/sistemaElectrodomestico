@@ -17,6 +17,10 @@ import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLayeredPane;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Ejecutable extends JFrame {
 
@@ -32,7 +36,7 @@ public class Ejecutable extends JFrame {
 		
 		
 		setTitle("ELECTROSYSTEM");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Martin\\Desktop\\TP1 - AGOSTO\\mini005.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ejecutable.class.getResource("/imagenes/mini005.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		setBounds(100, 100, 533, 239);
@@ -42,14 +46,14 @@ public class Ejecutable extends JFrame {
 		contentPane.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(SystemColor.inactiveCaptionBorder);
+		menuBar.setBackground(SystemColor.scrollbar);
 		menuBar.setMargin(new Insets(2, 2, 2, 2));
 		menuBar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		menuBar.setBounds(0, 0, 527, 33);
 		contentPane.add(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Archivo");
-		mnNewMenu.setFont(new Font("Verdana", Font.PLAIN, 18));
+		mnNewMenu.setFont(new Font("Verdana", Font.BOLD, 18));
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
@@ -68,7 +72,7 @@ public class Ejecutable extends JFrame {
 		mnNewMenu.add(mntmSalir);
 		
 		JMenu mnOpciones = new JMenu("  Opciones");
-		mnOpciones.setFont(new Font("Verdana", Font.PLAIN, 18));
+		mnOpciones.setFont(new Font("Verdana", Font.BOLD, 18));
 		menuBar.add(mnOpciones);
 		
 		JMenu mnNewMenu_1 = new JMenu("  Agregar ");
@@ -126,6 +130,11 @@ public class Ejecutable extends JFrame {
 		mntmNewMenuItem_4.setFont(new Font("Verdana", Font.PLAIN, 18));
 		mnListarPor.add(mntmNewMenuItem_4);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Ejecutable.class.getResource("/imagenes/fondo-madera-marron.jpg")));
+		lblNewLabel.setBounds(0, 25, 517, 176);
+		contentPane.add(lblNewLabel);
+		
 		
 	}
 
@@ -144,5 +153,4 @@ public static void main(String[] args) {
 		}
 	});
 }
-
 }

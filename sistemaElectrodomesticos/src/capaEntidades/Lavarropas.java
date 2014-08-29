@@ -50,5 +50,5 @@ public class Lavarropas extends Electrodomesticos {
 		return precio_final;
 	}
 	
-
+	
 }
