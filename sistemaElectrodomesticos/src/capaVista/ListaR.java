@@ -105,7 +105,7 @@ public class ListaR extends JDialog {
 		cmbConsumo.setBounds(103, 75, 92, 20);
 		getContentPane().add(cmbConsumo);
 		
-		btnNewButton = new JButton("Limpiar");
+		btnNewButton = new JButton("Eliminar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNewButton.setEnabled(false);
@@ -117,7 +117,7 @@ public class ListaR extends JDialog {
 		btnNewButton.setBounds(487, 85, 89, 23);
 		getContentPane().add(btnNewButton);
 		
-	    btnNewButton_1 = new JButton("Actualizar");
+	    btnNewButton_1 = new JButton("Modificar");
 		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 9));
 		btnNewButton_1.setBounds(376, 85, 101, 23);

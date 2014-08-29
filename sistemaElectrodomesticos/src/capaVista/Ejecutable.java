@@ -100,35 +100,18 @@ public class Ejecutable extends JFrame {
 		
 		mntmTelevisin1.setFont(new Font("Verdana", Font.PLAIN, 18));
 		mnNewMenu_1.add(mntmTelevisin1);
-	
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("  Dar de baja");
-		mntmNewMenuItem.setFont(new Font("Verdana", Font.PLAIN, 18));
-		mnOpciones.add(mntmNewMenuItem);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("  Modificar");
-		mntmNewMenuItem_3.setFont(new Font("Verdana", Font.PLAIN, 18));
-		mnOpciones.add(mntmNewMenuItem_3);
-		
-		JMenu mnListarPor = new JMenu("  Listar por");
-		mnListarPor.setFont(new Font("Verdana", Font.PLAIN, 18));
-		mnOpciones.add(mnListarPor);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("  Rango de importes");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("  Listar");
+		mnOpciones.add(mntmNewMenuItem_1);
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				new ListaR(Ejecutable.this,true).setVisible(true);
 			
 			}});
-		 
-		 
-		mntmNewMenuItem_1.setFont(new Font("Verdana", Font.PLAIN, 18));
-		mnListarPor.add(mntmNewMenuItem_1);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("  Consumo Energetico");
-		mntmNewMenuItem_4.setFont(new Font("Verdana", Font.PLAIN, 18));
-		mnListarPor.add(mntmNewMenuItem_4);
+		
+		mntmNewMenuItem_1.setFont(new Font("Verdana", Font.PLAIN, 18));
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Ejecutable.class.getResource("/imagenes/fondo-madera-marron.jpg")));

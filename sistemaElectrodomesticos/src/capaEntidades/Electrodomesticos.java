@@ -64,26 +64,71 @@ public class Electrodomesticos {
 		;
 		precioBase = p ;
 		peso = pe;
-		this.col = new Color(comprobarColor(colo));
-		/*char letra = this.comprobarConsumoEnergetico(consu);*/
-		this.consu = new Consumo(consu);
+		if (this.comprobarConsumoEnergetico(consu))
+		{
+			this.consu = new Consumo(consu);
+		}
+		else
+		{
+			this.consu = new Consumo('F');
+		}
+		if (this.comprobarColor(colo))
+		{
+			colo = transformar(colo);
+			this.col = new Color(colo);
+		}
+		else
+		{
+			this.col = new Color("Blanco");
+		}		
+	}
 		
+	
+	
+	
+	private boolean comprobarConsumoEnergetico(char letra)
+	{
+		char[] letras = {'A','B','C','D','E','F'};
+		letra = Character.toUpperCase(letra);
+		boolean estado = false;
+		for(int i = 0; i < 6 ; i++)
+		{
+			if (letras[i] == letra)
+			{
+				estado = true;
+				break;
+			}
+		}
+		if (estado == true)
+		{
+			return estado;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 	
-	/* public char  comprobarConsumoEnergetico(char letra){
-		letra=Character.toUpperCase(letra); 
-		if (letra!='A' || letra!='B' || letra!='C' || letra!='D' || letra!='E')	
-			letra = 'F';  			
-		return letra;
-	}*/
-	
-	private String comprobarColor(String colo){
-		
-		if(colo!="NEGRO" || colo!="AZUL" || colo!="GRIS" || colo!="ROJO"){
-			colo = "BLANCO";
+	private boolean comprobarColor(String color)
+	{
+		String[] colores = {"blanco","negro","rojo","azul","gris"};
+		boolean estado = false;
+		for(int i = 0; i < 5 ; i++)
+		{
+			if (color.compareToIgnoreCase(colores[i]) == 0)
+			{
+				estado = true;
+				break;
+			}
 		}
-		
-		return colo;
+		if (estado == true)
+		{
+			return estado;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 	
 	public String getTipo()
@@ -150,6 +195,24 @@ public class Electrodomesticos {
 		}
 		
 		return precio_final; 
+	}
+	private String transformar(String color)
+	{
+		char[] caracteres = color.toCharArray();
+		
+		for (int i = 0; i < color.length(); i++)
+		{
+			if (i == 0)
+			{
+				caracteres[i] = Character.toUpperCase(caracteres[i]);
+			}
+			else
+			{
+				caracteres[i] = Character.toLowerCase(caracteres[i]);
+			}
+		}
+		
+		return new String(caracteres);
 	}
 	}
 
