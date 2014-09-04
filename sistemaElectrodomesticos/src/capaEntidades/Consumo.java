@@ -3,7 +3,7 @@ package capaEntidades;
 public class Consumo {
 		
 	private char consumo;
-
+	private char letra;
 	public char getConsumo() {
 		return consumo;
 	}
@@ -15,7 +15,9 @@ public class Consumo {
 	public Consumo(){}
 	
 	public Consumo(char con){
-		consumo = con;
+		letra = Character.toUpperCase(con);
+
+		consumo = letra;
 	}
 
 	

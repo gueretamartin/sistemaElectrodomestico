@@ -34,6 +34,13 @@ public class Ejecuta  {
 				return o1.getTipo().compareTo(o2.getTipo());
 			}});
 	return elecs;
+	}
+
+	
+	
+	public static void eliminarElec(Electrodomesticos electroActual) {
+		Datos.eliminarElectro(electroActual);
+		
 	}}
 
 	

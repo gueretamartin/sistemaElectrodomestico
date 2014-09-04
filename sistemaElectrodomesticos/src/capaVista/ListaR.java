@@ -26,8 +26,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.Toolkit;
 
+import capaLogica.Ejecuta;
+
 public class ListaR extends JDialog {
 
+	/* Declaración de Variables */ 
 	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
@@ -35,12 +38,13 @@ public class ListaR extends JDialog {
 	private JTextField ranMin;
 	private JTextField ranMax;
 	private Character[] letras = {' ','A','B','C','D','E','F'};
-	private ArrayList<Electrodomesticos> elecs;
 	private JComboBox cmbConsumo;
 	private JButton btnListar;
 	private	JButton btnNewButton_1;
 	private JButton btnNewButton;
-		
+	
+	/* Constructor de ListaR */
+	
 	public ListaR(JFrame hola, boolean modal) {
 		
 		super(hola,modal);
@@ -108,7 +112,7 @@ public class ListaR extends JDialog {
 		btnNewButton = new JButton("Eliminar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnNewButton.setEnabled(false);
+			Eliminar();
 			}	
 	});
 		
@@ -118,6 +122,11 @@ public class ListaR extends JDialog {
 		getContentPane().add(btnNewButton);
 		
 	    btnNewButton_1 = new JButton("Modificar");
+	    btnNewButton_1.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	Modificar();
+	    	}
+	    });
 		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 9));
 		btnNewButton_1.setBounds(376, 85, 101, 23);
@@ -140,14 +149,17 @@ public class ListaR extends JDialog {
 		});
 		btnListar.setBounds(277, 86, 89, 23);
 		getContentPane().add(btnListar);
-		
+		ranMin.setText("0");
+		ranMax.setText("1000");	
 	
 	}
-
+	
+	/* Metodo del Boton Listar */
+	
 	public void Listar() {
 		
 		try
-		{			
+		{		
 			model = new ModeloTabla(ranMin.getText(),ranMax.getText(),(Character)cmbConsumo.getSelectedItem());
 			table.setModel(model);
 			for(int i = 0; i < model.getColumnCount(); i++)
@@ -161,15 +173,38 @@ public class ListaR extends JDialog {
 		}
 	}	
 
+	/* Metodo del Boton Modificar */
 	
+	public void Modificar(){
+	try {int row = table.getSelectedRow();
+	Electrodomesticos electroActual = model.getDataSource().get(row);
+	if (electroActual instanceof capaEntidades.Lavarropas){new agregarLavarropas(ListaR.this,true,(Lavarropas)electroActual).setVisible(true);;}
+	else if  (electroActual instanceof capaEntidades.Television){new agregarTelevisor(ListaR.this,true,(Television)electroActual).setVisible(true);;}
+	Ejecuta.eliminarElec(electroActual);
+	Listar();
+	}catch(ArrayIndexOutOfBoundsException e){ JOptionPane.showMessageDialog(null, "Por favor Seleccione un elemento!");}
+}
 	
-	
-	
-	
+	/* Metodo del Boton Eliminar */
 
+	public void Eliminar(){
+	btnNewButton.setEnabled(false);
+	try{
+	int row = table.getSelectedRow();
+	Electrodomesticos electroActual = model.getDataSource().get(row);
+	Ejecuta.eliminarElec(electroActual);
+	Listar();
+	btnNewButton.setEnabled(true);			
+
+	}catch(ArrayIndexOutOfBoundsException ne){
+		JOptionPane.showMessageDialog(null, "No hay ningun elemento Seleccionado");
+		btnNewButton.setEnabled(true);			
+		}
+}
+
+	/* Metodo Main */
 	
-	
-public static void main(String[] args) {
+	public static void main(String[] args) {
 	ListaR frame = new ListaR(new JFrame(), true);
 	frame.addWindowListener(new java.awt.event.WindowAdapter() {
 

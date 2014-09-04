@@ -1,11 +1,12 @@
 package capaDatos;
 
 import java.util.ArrayList;
+
 import capaEntidades.*;
 
 
 public class Datos {
-										/* Create a new aa a a a  ArrayList of appliance */
+										/* Create a new  ArrayList of appliance */
 	
 	
 	static ArrayList<Electrodomesticos> electrodomesticos = new ArrayList<Electrodomesticos>();
@@ -45,11 +46,13 @@ public class Datos {
 	
 	
 		
-		
-	public void eliminarElectrodomestico(Electrodomesticos electro)
-	{};
+
 	public void modificarElectrodomestico(Electrodomesticos electro)
-	{}
+	{
+		
+		
+		
+	}
 
 	
 	
@@ -58,19 +61,7 @@ public class Datos {
 	        return electrodomesticos;
 	    }
 
-
-	
-	
-	/*
-	 * muestraPersonas(electrodomesticos);
-	 * 
-	 * 
-	 * 
-	 * public static void muestraPersonas(ArrayList<Electrodomesticos> electrodomesticos)
-	{
-		for(int i = 0; i< electrodomesticos.size(); i++)
-            System.out.println(electrodomesticos.get(i).getCol().getColor()); 
-    }*/
-	}	
-
+	public static void eliminarElectro(Electrodomesticos electroActual) {
+		electrodomesticos.remove(electroActual);
+	}}
 
