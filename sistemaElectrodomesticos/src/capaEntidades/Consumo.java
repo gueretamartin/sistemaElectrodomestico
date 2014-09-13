@@ -3,6 +3,8 @@ package capaEntidades;
 public class Consumo {
 		
 	private char consumo;
+	private int idConsumo;
+	
 	private char letra;
 	public char getConsumo() {
 		return consumo;

@@ -34,6 +34,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.util.ArrayList;
 
 public class agregarLavarropas extends JDialog {
 
@@ -77,7 +78,8 @@ public class agregarLavarropas extends JDialog {
 		layeredPane_1.setBackground(new Color(255, 240, 245));
 		layeredPane_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		
-		String[] valores= new String[]{"NEGRO","BLANCO","AZUL","ROJO","GRIS" } ;
+		
+		String[] valores = capaLogica.Ejecuta.getColores();
 		con = new JComboBox(valores);
 		con.setFont(new Font("Verdana", Font.PLAIN, 15));
 		con.setBounds(104, 191, 105, 25);
@@ -418,6 +420,10 @@ public class agregarLavarropas extends JDialog {
 		this.t3.setText(null);
 		this.t4.setText(null);
 	}
+	
+	
+		
+	
 	
 	/* Metodo principal */
 	

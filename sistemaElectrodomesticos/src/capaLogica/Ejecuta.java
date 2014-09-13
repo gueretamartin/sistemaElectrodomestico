@@ -41,6 +41,17 @@ public class Ejecuta  {
 	public static void eliminarElec(Electrodomesticos electroActual) {
 		Datos.eliminarElectro(electroActual);
 		
+	}
+
+	public static String[] getColores() {
+		ArrayList<Color> cls= capaDatos.ColorAdaptador.getColores();
+		String col1 = cls.get(0).getColor();
+		String col2 = cls.get(1).getColor();
+		String col3 = cls.get(2).getColor();
+		String col4 = cls.get(3).getColor();
+		String col5 = cls.get(4).getColor();
+		String[] valores= new String[]{col1,col2,col3,col4,col5} ;
+		return valores;
 	}}
 
 	

@@ -16,18 +16,18 @@ public class DataConnectionManager {
 	}
 	
 	private static String dbUrl="jdbc:mysql://localhost:3306/electroBase";
-
+	private static String dbUser="java";
+	private static String dbPassword="java123";
 		
 	private DataConnectionManager(){}
 	
-	private Connection conection;
+	private Connection conn;
 	
 	public Connection getConn(){
 		try {
-			if(
-				conection==null || !conection.isValid(3)){
+			if(conn==null || !conn.isValid(3)){
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				conection=DriverManager.getConnection(dbUrl);	
+				conn=DriverManager.getConnection(dbUrl,dbUser,dbPassword);	
 			}
 			
 		} catch (InstantiationException e) {
@@ -40,13 +40,13 @@ public class DataConnectionManager {
 			e.printStackTrace();
 		}
 
-		return conection;
+		return conn;
 	}
 	
 	public void CloseConn(){
 		try {
-			if(conection!=null && !conection.isClosed()){
-				conection.close();
+			if(conn!=null && !conn.isClosed()){
+				conn.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

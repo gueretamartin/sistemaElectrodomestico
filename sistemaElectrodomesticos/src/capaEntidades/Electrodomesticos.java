@@ -2,6 +2,7 @@ package capaEntidades;
 
 public class Electrodomesticos {
 	
+	private int idElectro;
 	private float precioBase;
 	private float peso;
 	private Color col;
