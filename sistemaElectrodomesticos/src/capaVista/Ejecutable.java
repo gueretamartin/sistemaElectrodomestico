@@ -38,7 +38,7 @@ public class Ejecutable extends JFrame {
 	public Ejecutable() {
 		
 		  
-		/*Clase ejecutable*/
+		/*Clase ejecutable  */
 		setTitle("ELECTROSYSTEM");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Ejecutable.class.getResource("/imagenes/mini005.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
