@@ -42,7 +42,7 @@ public class ColorAdaptador {
 				{
 					rs.close();
 				}
-				if(sentencia!=null /*&& !sentencia.isClosed()*/)
+				if(sentencia!=null && !sentencia.isClosed())
 				{
 					sentencia.close();
 				}
@@ -57,4 +57,116 @@ public class ColorAdaptador {
 		return cls;
 	}
 	
+	
+	public Color getColorById(int idColor)
+	{
+		return this.getColorById(idColor, true);
+	}
+	
+	public  Color getColorById(int idColor, boolean CloseConnection){
+		
+		String sql="SELECT idColor, color FROM color WHERE idColor=?"; 
+		
+		PreparedStatement sentencia = null;
+		ResultSet rs = null;
+		Color c = null;
+		
+		try 
+		{			
+			sentencia = DataConnectionManager.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setInt(1, idColor);
+			rs = sentencia.executeQuery();
+			
+			if(rs.next())
+			{
+				c = new Color(rs.getString("color"));
+				c.setIdColor(rs.getInt("idColor"));
+				
+			}					
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			try
+			{
+				if (rs!=null)
+				{
+					rs.close();
+				}
+				if (sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				if(CloseConnection){
+					DataConnectionManager.getInstancia().CloseConn();
+				}
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}
+				
+		return c;
+	}
+	
+	public Color getColorByNombre(String nombreColor)
+	{
+		return this.getColorByNombre(nombreColor, true);
+	}
+	
+	
+	public Color getColorByNombre(String nombreColor, boolean CloseConnection) 
+	{
+		String sql="SELECT idColor, color FROM color WHERE nombre_color=?"; 
+		
+		PreparedStatement sentencia = null;
+		ResultSet rs = null;
+		Color c = null;
+		
+		try 
+		{			
+			sentencia = DataConnectionManager.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setString(1, nombreColor);
+			rs = sentencia.executeQuery();
+			
+			if(rs.next())
+			{
+				c = new Color(rs.getString("color"));
+				c.setIdColor(rs.getInt("idColor"));
+				
+			}					
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if (rs!=null)
+				{
+					rs.close();
+				}
+				if (sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				if(CloseConnection){
+					DataConnectionManager.getInstancia().CloseConn();
+				}
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}
+				
+		return c;
+	}
 }

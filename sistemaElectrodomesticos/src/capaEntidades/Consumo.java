@@ -4,8 +4,29 @@ public class Consumo {
 		
 	private char consumo;
 	private int idConsumo;
+	private double precio;
+
 	
-	private char letra;
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	
+
+	public int getIdConsumo() {
+		return idConsumo;
+	}
+
+	public void setIdConsumo(int idConsumo) {
+		this.idConsumo = idConsumo;
+	}
+
+	
+	
 	public char getConsumo() {
 		return consumo;
 	}
@@ -14,12 +35,17 @@ public class Consumo {
 		this.consumo = consumo;
 	}
 	
-	public Consumo(){}
+	
+	public Consumo(char letra, double precio)
+	{
+		letra = Character.toUpperCase(letra);
+		this.consumo = letra;
+		this.precio = precio;
+	}
 	
 	public Consumo(char con){
-		letra = Character.toUpperCase(con);
+		consumo = Character.toUpperCase(con);
 
-		consumo = letra;
 	}
 
 	
