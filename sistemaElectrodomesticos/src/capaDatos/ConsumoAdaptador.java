@@ -160,5 +160,60 @@ public class ConsumoAdaptador {
 		return letras;
 	}
 	
+	
+	public Consumo getConsumoPorLetra(char letra)
+	{
+		return this.getConsumoPorLetra(letra, true);
+	}
+	
+	public Consumo getConsumoPorLetra(char letra, boolean CloseConnection){
+		
+		
+		String sql="SELECT idConsumo, consumo, precio FROM consumo WHERE consumo=?"; //evitamos que se filtre información y que haya posibilidad de hackeo
+	
+		PreparedStatement sentencia = null;
+		ResultSet rs = null;
+		Consumo c = null;
+		
+		try 
+		{			
+			sentencia = DataConnectionManager.getInstancia().getConn().prepareStatement(sql);
+			sentencia.setString(1,String.valueOf(letra));
+			rs = sentencia.executeQuery();
+			
+			if(rs.next())
+			{
+				c = new Consumo(rs.getString("consumo").charAt(0),rs.getFloat("precio"));
+				c.setIdConsumo(rs.getInt("idConsumo"));				
+			}					
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if (rs!=null)
+				{
+					rs.close();
+				}
+				if (sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				if(CloseConnection){
+					DataConnectionManager.getInstancia().CloseConn();
+				}
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}
+				
+		return c;
+	}
 
 }

@@ -18,6 +18,7 @@ public class Television extends Electrodomesticos {
 	}
 	public void setSintonizadorTdt(boolean sintonizadorTdt) {
 		this.sintonizadorTdt = sintonizadorTdt;
+	
 	}
 	
 	public Television(){
@@ -47,8 +48,12 @@ public class Television extends Electrodomesticos {
 				return tipo;
 	}
 	
-	public String getTDT()
+	public boolean getSintonizadorTdt()
 	{
+	return sintonizadorTdt;
+	}
+	
+	public String getTDT(){
 		if (this.isSintonizadorTdt())
 		{
 			return "Si";

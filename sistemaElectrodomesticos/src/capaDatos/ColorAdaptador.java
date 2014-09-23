@@ -122,7 +122,7 @@ public class ColorAdaptador {
 	
 	public Color getColorByNombre(String nombreColor, boolean CloseConnection) 
 	{
-		String sql="SELECT idColor, color FROM color WHERE nombre_color=?"; 
+		String sql="SELECT idColor, color FROM color WHERE color=?"; 
 		
 		PreparedStatement sentencia = null;
 		ResultSet rs = null;

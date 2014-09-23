@@ -76,9 +76,64 @@ public class ElectroAdaptador {
 	}
 		
 		
+	public static void guardaElectro(Electrodomesticos elec){
+		String sql = "INSERT INTO electrodomesticos(precioBase,peso,carga,resolucion,SintonizadorTdt,idConsumo,idColor) values (?,?,?,?,?,?,?)";
+		PreparedStatement sentencia = null;
+		Connection conn = DataConnectionManager.getInstancia().getConn();
 		
+		try 
+		{
+			sentencia = conn.prepareStatement(sql);
+			sentencia.setDouble(1, elec.getPrecioBase());
+			sentencia.setDouble(2, elec.getPeso());
+			
+			Color clr = new ColorAdaptador().getColorByNombre(elec.getCol().getColor(),false);
+			Consumo consu = new ConsumoAdaptador().getConsumoPorLetra(elec.getConsu().getConsumo(), false);
 		
-		
+			sentencia.setInt(7,clr.getIdColor());
+			sentencia.setInt(6, consu.getIdConsumo());
+			
+			if(elec instanceof Lavarropas)
+			{
+				sentencia.setDouble(3,((Lavarropas)elec).getCarga());
+			}
+			else
+			{
+				sentencia.setObject(3, null);
+			}
+			if(elec instanceof Television)
+			{
+				sentencia.setDouble(4,((Television)elec).getResolucion());
+				sentencia.setBoolean(5,((Television)elec).getSintonizadorTdt());
+			}
+			else
+			{
+				sentencia.setObject(4, null);
+				sentencia.setObject(5, null);
+			}
+			sentencia.execute(); 
+
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				DataConnectionManager.getInstancia().CloseConn();
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}			
+		}		
+	}   
 		
 		
 }
