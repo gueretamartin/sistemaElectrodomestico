@@ -22,12 +22,8 @@ public class Ejecuta  {
 		ElectroAdaptador.guardaElectro(electro);
 	}
 	
-	
-	
-	
 	public  ArrayList<Electrodomesticos> getOrden(){
 		elecs = ElectroAdaptador.getTodos();
-
 		Collections.sort(elecs,	new Comparator<Electrodomesticos>() {
 		public int compare(Electrodomesticos o1, Electrodomesticos o2)
 			{
@@ -39,8 +35,7 @@ public class Ejecuta  {
 	
 	
 	public static void eliminarElec(Electrodomesticos electroActual) {
-		/*Datos.eliminarElectro(electroActual);*/
-		
+		ElectroAdaptador.eliminarElectrodomestico(electroActual);
 	}
 
 	public static String[] getColores() {

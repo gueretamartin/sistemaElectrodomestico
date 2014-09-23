@@ -176,10 +176,14 @@ public class ListaR extends JDialog {
 	/* Metodo del Boton Modificar */
 	
 	public void Modificar(){
-	try {int row = table.getSelectedRow();
+	try {
+		int row = table.getSelectedRow();
 	Electrodomesticos electroActual = model.getDataSource().get(row);
 	if (electroActual instanceof capaEntidades.Lavarropas){new agregarLavarropas(ListaR.this,true,(Lavarropas)electroActual).setVisible(true);;}
-	else if  (electroActual instanceof capaEntidades.Television){new agregarTelevisor(ListaR.this,true,(Television)electroActual).setVisible(true);;}
+	else if  (electroActual instanceof capaEntidades.Television){ new agregarTelevisor(ListaR.this,true,(Television)electroActual).setVisible(true);;}
+
+	/*Aca no se como hacer para que no me elimine si me apreta cancelar "PREGUNTAR" */
+	
 	Ejecuta.eliminarElec(electroActual);
 	Listar();
 	}catch(ArrayIndexOutOfBoundsException e){ JOptionPane.showMessageDialog(null, "Por favor Seleccione un elemento!");}

@@ -134,6 +134,44 @@ public class ElectroAdaptador {
 			}			
 		}		
 	}   
+	
+	 public static void eliminarElectrodomestico(Electrodomesticos electro)
+	    {
+	    	String sql = "DELETE FROM electrodomesticos WHERE idElectrodomestico=?";
+			
+			PreparedStatement sentencia = null;
+			ResultSet rs = null;
+			
+			try 
+			{			
+				sentencia = DataConnectionManager.getInstancia().getConn().prepareStatement(sql);
+				sentencia.setInt(1, electro.getIdElectro());
+				sentencia.executeUpdate();					
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					if (rs!=null)
+					{
+						rs.close();
+					}
+					if (sentencia!=null && !sentencia.isClosed())
+					{
+						sentencia.close();
+					}
+					DataConnectionManager.getInstancia().CloseConn();
+				}
+				catch (SQLException sqle)
+				{
+					sqle.printStackTrace();
+				}
+			}
+	    }
 		
 		
 }
