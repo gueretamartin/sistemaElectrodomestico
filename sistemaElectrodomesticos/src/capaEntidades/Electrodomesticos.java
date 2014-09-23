@@ -10,35 +10,51 @@ public class Electrodomesticos {
 	
 	
 	
-	public double getPrecioBase() {
-		return precioBase;
-	}
-	public void setPrecioBase(float precioBase) {
-		this.precioBase = precioBase;
-	}
-	public float getPeso() {
-		return peso;
-	}
-	public void setPeso(float peso) {
-		this.peso = peso;
-	}
 	
-	public Consumo getConsu() {
-	return consu;
-	}
-	public void setConsu(Consumo consu) {
-		this.consu = consu;
-	}
-	public Color getCol() {
-		return col;
-	}
-	public void setCol(Color col) {
-		this.col = col;
-	}
 	
 	
 	/* Constructor por defecto */
 	
+	public int getIdElectro() {
+		return idElectro;
+	}
+
+	public void setIdElectro(int idElectro) {
+		this.idElectro = idElectro;
+	}
+
+	public float getPrecioBase() {
+		return precioBase;
+	}
+
+	public void setPrecioBase(float precioBase) {
+		this.precioBase = precioBase;
+	}
+
+	public float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
+
+	public Color getCol() {
+		return col;
+	}
+
+	public void setCol(Color col) {
+		this.col = col;
+	}
+
+	public Consumo getConsu() {
+		return consu;
+	}
+
+	public void setConsu(Consumo consu) {
+		this.consu = consu;
+	}
+
 	public Electrodomesticos()
 	
 	{

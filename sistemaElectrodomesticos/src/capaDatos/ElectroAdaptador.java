@@ -27,28 +27,60 @@ public class ElectroAdaptador {
 		try{
 			sentencia = DataConnectionManager.getInstancia().getConn().createStatement();
 			rs = sentencia.executeQuery(sql);
-			
-			while(rs.next()){
+
+
+			while(rs.next())
+			{
 				Electrodomesticos el;
+				
 				Color clr = new ColorAdaptador().getColorById(rs.getInt("idColor"),false);
-			}
-		
-		
-		
-		
-		
-		
-		
-		
-		}catch (SQLException e) 
+				Consumo consu = new ConsumoAdaptador().getConsumoPorID(rs.getInt("idConsumo"),false);
+				
+				if(rs.getDouble("carga") == 0)
+				{					
+					el = new Television(rs.getFloat("precioBase"),rs.getFloat("peso"), consu.getConsumo(), rs.getFloat("resolucion"), clr.getColor(), rs.getBoolean("sintonizadorTdt"));
+				}
+				else
+				{
+					el = new Lavarropas(rs.getFloat("precioBase"),rs.getFloat("peso"), rs.getFloat("carga"), consu.getConsumo(),clr.getColor());					
+				}
+				el.setIdElectro(rs.getInt("idElectrodomestico"));
+				electros.add(el);
+				
+			}					
+		} 
+		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
-		}
-	
-
-
-
+		finally
+		{
+			try
+			{
+				if(rs!=null)
+				{
+					rs.close();
+				}
+				if(sentencia!=null && !sentencia.isClosed())
+				{
+					sentencia.close();
+				}
+				DataConnectionManager.getInstancia().CloseConn();
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}		
+		return electros;
+	}
+		
+		
+		
+		
+		
+		
+		
 }
 		
 	

@@ -4,14 +4,14 @@ public class Consumo {
 		
 	private char consumo;
 	private int idConsumo;
-	private double precio;
+	private float precio;
 
 	
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
@@ -35,8 +35,13 @@ public class Consumo {
 		this.consumo = consumo;
 	}
 	
+	public Consumo(){	
+		this.consumo='F';
+		}
+		
+		
+		public Consumo(char letra, float precio)
 	
-	public Consumo(char letra, double precio)
 	{
 		letra = Character.toUpperCase(letra);
 		this.consumo = letra;

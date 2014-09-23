@@ -23,7 +23,7 @@ public class ConsumoAdaptador {
 			
 			while(rs.next()) 
 			{
-				Consumo consu = new Consumo(rs.getString("consumo").charAt(0),rs.getDouble("precio"));
+				Consumo consu = new Consumo(rs.getString("consumo").charAt(0),rs.getFloat("precio"));
 				consu.setIdConsumo(rs.getInt("idConsumo"));
 				consus.add(consu);
 			}					
@@ -63,7 +63,7 @@ public class ConsumoAdaptador {
 	
 	public Consumo getConsumoPorID(int idConsumo, Boolean CloseConnection)
 	{
-		String sql="SELECT idConsumo, consumo, precio FROM consumo WHERE id=?"; //evitamos que se filtre información y que haya posibilidad de hackeo
+		String sql="SELECT idConsumo, consumo, precio FROM consumo WHERE idConsumo=?"; //evitamos que se filtre información y que haya posibilidad de hackeo
 	
 		PreparedStatement sentencia = null;
 		ResultSet rs = null;
@@ -77,8 +77,8 @@ public class ConsumoAdaptador {
 			
 			if(rs.next())
 			{
-				c = new Consumo(rs.getString("consumo").charAt(0),rs.getDouble("precio"));
-				c.setIdConsumo(rs.getInt("id"));			
+				c = new Consumo(rs.getString("consumo").charAt(0),rs.getFloat("precio"));
+				c.setIdConsumo(rs.getInt("idConsumo"));			
 			}					
 		} 
 		catch (SQLException e) 
