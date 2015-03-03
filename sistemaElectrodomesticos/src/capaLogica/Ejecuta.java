@@ -1,5 +1,6 @@
 package capaLogica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,7 +8,11 @@ import java.util.Comparator;
 import capaEntidades.*;
 import capaDatos.*;
 
-public class Ejecuta  {
+public class Ejecuta implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static ArrayList<Electrodomesticos> elecs;
 
 	public static void agregaLavarropas(float pre, float pes, float car, char cons, String col){
