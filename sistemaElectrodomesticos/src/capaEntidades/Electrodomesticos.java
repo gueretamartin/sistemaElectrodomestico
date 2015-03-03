@@ -1,7 +1,13 @@
 package capaEntidades;
 
-public class Electrodomesticos {
+import java.io.Serializable;
+
+public class Electrodomesticos implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idElectro;
 	private float precioBase;
 	private float peso;
