@@ -170,3 +170,4 @@ public class ColorAdaptador {
 		return c;
 	}
 }
+
