@@ -10,12 +10,18 @@ import capaEntidades.Lavarropas;
 import capaEntidades.Television;
 import capaDatos.ColorAdaptador;
 
+import java.io.Serializable;
 import java.sql.*;
 
-public class ElectroAdaptador {
+public class ElectroAdaptador implements Serializable {
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static ArrayList<Electrodomesticos> getTodos(){
 		
 		ArrayList<Electrodomesticos> electros = new ArrayList<Electrodomesticos>();
@@ -175,6 +181,7 @@ public class ElectroAdaptador {
 		
 		
 }
+		
 		
 	
 	
