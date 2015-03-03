@@ -2,6 +2,9 @@
     <wb-module deploy-name="tpWEBMartinGuereta">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="sistemaElectrodomesticos.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sistemaElectrodomesticos/sistemaElectrodomesticos">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="tpWEBMartinGuereta"/>
         <property name="java-output-path" value="/tpWEBMartinGuereta/build/classes"/>
     </wb-module>
